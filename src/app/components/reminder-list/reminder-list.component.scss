@@ -1,0 +1,293 @@
+// Professional color palette
+$primary-color: #1976d2;
+$accent-color: #4caf50;
+$danger-color: #e53935;
+$background-color: #f5f7fa;
+$card-background: #ffffff;
+$text-color: #37474f;
+$text-secondary: #607d8b;
+$border-color: #e0e0e0;
+$shadow-color: rgba(0, 0, 0, 0.08);
+
+.reminder-app {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  margin: 0 auto;
+  height: 100%;
+  max-height: 100vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px $shadow-color, 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: $card-background;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+.time-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 24px;
+  background: linear-gradient(135deg, $danger-color, darken($danger-color, 10%));
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    background: linear-gradient(135deg, darken($danger-color, 5%), darken($danger-color, 15%));
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .current-time {
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    
+    .time-mode {
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-top: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  }
+
+  .clock-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+    
+    svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.reminders-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: $background-color;
+  padding: 0;
+  height: 0; /* Allow the container to shrink */
+  overflow: hidden;
+}
+
+.reminders-list {
+  padding: 12px 0;
+}
+
+.no-reminders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 24px;
+  text-align: center;
+  color: $text-secondary;
+  
+  svg {
+    margin-bottom: 16px;
+  }
+  
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .hint {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+}
+
+.reminder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  margin: 0 12px 8px;
+  border-radius: 8px;
+  background-color: $card-background;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px $shadow-color;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 4px 8px $shadow-color;
+    transform: translateY(-1px);
+  }
+
+  &.completed {
+    opacity: 0.8;
+    
+    .reminder-text {
+      text-decoration: line-through;
+      color: $text-secondary;
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: $accent-color;
+      border-radius: 4px 0 0 4px;
+    }
+  }
+
+  .reminder-text {
+    flex: 1;
+    font-size: 16px;
+    color: $text-color;
+    font-weight: 500;
+    margin-right: 16px;
+  }
+
+  .reminder-time {
+    font-size: 14px;
+    color: $primary-color;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgba($primary-color, 0.08);
+  }
+}
+
+.add-reminder-container {
+  padding: 16px 24px;
+  background-color: $card-background;
+  border-top: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -2px 10px $shadow-color;
+}
+
+.form-group {
+  margin-bottom: 14px;
+  
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-color;
+  }
+}
+
+.time-picker {
+  position: relative;
+  
+  .time-input {
+    width: 100%;
+    padding: 14px;
+    padding-right: 46px;
+    border: 2px solid $border-color;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+  }
+  
+  .time-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba($accent-color, 0.1);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    svg {
+      fill: $accent-color;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.reminder-input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid $border-color;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+}
+
+.add-reminder-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.4);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba($primary-color, 0.3);
+  }
+  
+  &:disabled {
+    background-color: lighten($primary-color, 20%);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+}

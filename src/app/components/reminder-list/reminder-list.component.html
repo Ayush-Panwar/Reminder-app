@@ -1,0 +1,82 @@
+<div class="reminder-app">
+  <!-- Current Time Header -->
+  <div class="time-header" (click)="toggleTimeSpeed()">
+    <div class="current-time">
+      {{ (currentTime$ | async) | date:'h:mm a' }}
+      <div class="time-mode">{{ isFastTime ? 'Fast Mode' : 'Normal Mode' }}</div>
+    </div>
+    <div class="clock-icon" title="Click to toggle time speed">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Reminders List -->
+  <div class="reminders-container">
+    <div class="reminders-list">
+      <ng-container *ngIf="(reminders$ | async)?.length; else noReminders">
+        <div 
+          *ngFor="let reminder of reminders$ | async" 
+          class="reminder-item" 
+          [ngClass]="{'completed': reminder.completed}"
+        >
+          <div class="reminder-text">{{ reminder.text }}</div>
+          <div class="reminder-time">{{ formatTime(reminder.time) }}</div>
+        </div>
+      </ng-container>
+      <ng-template #noReminders>
+        <div class="no-reminders">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#607d8b" opacity="0.5">
+            <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+          </svg>
+          <p>No reminders yet</p>
+          <p class="hint">Add a new reminder below</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Add Reminder Form -->
+  <div class="add-reminder-container">
+    <div class="form-group">
+      <label for="reminderText">Reminder</label>
+      <input 
+        type="text" 
+        id="reminderText"
+        [(ngModel)]="newReminderText" 
+        placeholder="What do you need to remember?" 
+        class="reminder-input"
+      />
+    </div>
+    
+    <div class="form-group">
+      <label for="reminderTime">Time</label>
+      <div class="time-picker">
+        <input 
+          [(ngModel)]="newReminderTime"
+          [ngxTimepicker]="picker"
+          placeholder="Select time" 
+          readonly
+          class="time-input"
+          id="reminderTime"
+        />
+        <div class="time-icon" (click)="picker.open()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+        </div>
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
+      </div>
+    </div>
+    
+    <button 
+      class="add-reminder-button" 
+      (click)="addReminder()"
+      [disabled]="!newReminderText.trim() || !newReminderTime"
+    >
+      Add Reminder
+    </button>
+  </div>
+</div>
