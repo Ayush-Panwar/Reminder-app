@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { Reminder } from '../../models/reminder.model';
 import { ReminderService } from '../../services/reminder.service';
 
@@ -20,7 +20,7 @@ import { ReminderService } from '../../services/reminder.service';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    NgxMaterialTimepickerModule
+    NgxMatTimepickerModule
   ],
   templateUrl: './reminder-list.component.html',
   styleUrls: ['./reminder-list.component.scss']

@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 import { AppComponent } from './app.component';
 import { ReminderListComponent } from './components/reminder-list/reminder-list.component';
@@ -21,7 +22,8 @@ import { ReminderListComponent } from './components/reminder-list/reminder-list.
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    NgxMaterialTimepickerModule
+    MatDialogModule,
+    NgxMatTimepickerModule
   ],
   providers: [],
   bootstrap: []
