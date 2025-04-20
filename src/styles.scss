@@ -56,33 +56,6 @@ app-root {
   display: none;
 }
 
-/* Custom styling for the Mat Timepicker */
-.ngx-mat-timepicker {
-  font-family: 'Roboto', sans-serif;
-}
-
-.ngx-mat-timepicker .mat-dialog-container {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.ngx-mat-timepicker .mat-button-toggle-checked {
-  background-color: #1976d2;
-  color: white;
-}
-
-.ngx-mat-timepicker .clock-face__number--selected {
-  background-color: #1976d2 !important;
-}
-
-.ngx-mat-timepicker .clock-face__clock-hand {
-  background-color: #1976d2 !important;
-}
-
-.ngx-mat-timepicker .timepicker-button {
-  color: #1976d2;
-}
-
 /* Utility classes */
 .text-center {
   text-align: center;
